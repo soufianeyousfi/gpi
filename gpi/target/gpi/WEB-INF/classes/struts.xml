@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+ "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<constant name="struts.custom.i18n.resources" value="global"></constant>
+	<package name="default" extends="struts-default">
+
+		<interceptors>
+			<interceptor name="login" class="org.hmc.interceptor.LoginInterceptor" />
+			<interceptor-stack name="InterceptorStack">
+				<interceptor-ref name="login" />
+				<interceptor-ref name="defaultStack">
+					<param name="maximumSize">10485760</param>
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="InterceptorStack"></default-interceptor-ref>
+
+		<global-results>
+			<result name="redirectToLogin">/login.jsp</result>
+		</global-results>
+
+		<action name="login" class="org.hmc.controller.AuthentificationController"
+			method="login">
+			<interceptor-ref name="defaultStack" />
+			<result name="success" type="redirect">index?option=index</result>
+			<result name="error">/login.jsp</result>
+		</action>
+
+		
+	</package>
+
+</struts>

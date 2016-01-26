@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+ "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.ognl.allowStaticMethodAccess" value="true"></constant>
+	<constant name="struts.devMode" value="true" />
+	<package name="default" extends="struts-default">
+
+		<interceptors>
+			<interceptor name="login" class="org.gpi.interceptor.LoginInterceptor" />
+			<interceptor-stack name="InterceptorStack">
+				<interceptor-ref name="login" />
+				<interceptor-ref name="defaultStack">
+					<param name="maximumSize">10485760</param>
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="InterceptorStack"></default-interceptor-ref>
+
+
+
+		<global-results>
+			<result name="redirectToLogin" type="redirect">login</result>
+<!-- 			<result name="redirectToIndex">/index.jsp</result> -->
+		</global-results>
+	
+
+		<action name="login" class="org.gpi.controller.AuthentificationController"
+			method="login">
+			<interceptor-ref name="defaultStack" />
+			<result name="success" type="redirect">index?option=index</result>
+			<result name="error">/login.jsp</result>
+		</action>
+		<action name="index" class="org.gpi.controller.ProprieteController"
+			method="listMateriel">
+			<result name="success" >/index.jsp</result>
+			
+		</action>
+
+<action name="logout" class="org.gpi.controller.AuthentificationController"
+			method="logout">
+			<result name="success" type="redirect">/login</result>
+			<result name="error">/erreur.jsp</result>
+		</action>
+
+
+
+
+
+		<action name="initCreate" class="org.gpi.controller.ProprieteController"
+			method="initCreate">
+			<result name="success">/pages/propriete/initCreateForm.jsp
+			</result>
+		</action>
+			<action name="initEntreMater" class="org.gpi.controller.ProprieteController"
+			method="initEntreMater">
+			<result name="success" type="redirect"> index
+			</result>
+		</action>
+		<action name="addMateriel" class="org.gpi.controller.MaterielController"
+			method="addMateriel">
+			<result name="success">/pages/materiel/listMateriel.jsp
+			</result>
+
+		</action>
+		<action name="addEntreprise" class="org.gpi.controller.EntrepriseController"
+			method="addEntreprise">
+			<result name="success" type="redirect">listEntreprise
+			</result>
+		</action>
+		<action name="initUpdateEnt" class="org.gpi.controller.EntrepriseController"
+			method="initUpdate">
+			<result name="success">/pages/entreprise/initUpdateEntreprise.jsp
+			</result>
+		</action>
+		<action name="updateEntreprise" class="org.gpi.controller.EntrepriseController"
+			method="updateEntreprise">
+			<result name="success" type="redirect">listEntreprise
+			</result>
+		</action>
+		<action name="deleteEntreprise" class="org.gpi.controller.EntrepriseController"
+			method="deleteEntreprise">
+			<result name="success" type="redirect">listEntreprise
+			</result>
+		</action>
+		<action name="listEntreprise" class="org.gpi.controller.EntrepriseController"
+			method="listEntreprise">
+			<result name="success">/pages/entreprise/listEntreprise.jsp
+			</result>
+		</action>
+		<action name="listMaterielEntreprise" class="org.gpi.controller.ProprieteController"
+			method="listMaterielEntreprise">
+			<result name="success">/pages/entreprise/listMateriel.jsp
+			</result>
+		</action>
+		
+		
+		<action name="initAjouterPropriete" class="org.gpi.controller.ProprieteController"
+			method="initAjouterPropriete">
+			<result name="success">/pages/propriete/ajouterPropriete.jsp
+			</result>
+		</action>
+		<action name="initAjouterComputer" class="org.gpi.controller.ProprieteController"
+			method="initAjouterComputer">
+			<result name="success">/pages/computer/ajouterComputer.jsp
+			</result>
+		</action>
+		<action name="initAjouterImprimante" class="org.gpi.controller.ProprieteController"
+			method="initAjouterImprimante">
+			<result name="success">/pages/imprimante/ajouterImprimante.jsp
+			</result>
+		</action>
+		
+		<action name="addPropriete" class="org.gpi.controller.ProprieteController"
+			method="addPropriete">
+			<result name="success" type="redirect">listImprimante
+			</result>
+			<result name="success1" type="redirect">listComputer
+			</result>
+			
+		</action>
+		<action name="initUpdatePro" class="org.gpi.controller.ProprieteController"
+			method="initUpdate">
+			<result name="success" >/pages/propriete/initUpdate.jsp
+		    </result>
+		</action>
+		<action name="initUpdateComputer" class="org.gpi.controller.ProprieteController"
+			method="initUpdate">
+			<result name="success" >/pages/computer/initUpdate.jsp
+		    </result>
+		</action>
+		<action name="initUpdateImprimante" class="org.gpi.controller.ProprieteController"
+			method="initUpdate">
+			<result name="success" >/pages/imprimante/initUpdate.jsp
+		    </result>
+		</action>
+		<action name="updateMateriel" class="org.gpi.controller.ProprieteController"
+			method="updateMateriel">
+			<result name="success" type="redirect">listMateriel</result>
+		</action>
+		<action name="updateComputer" class="org.gpi.controller.ProprieteController"
+			method="updateComputer">
+			<result name="success" type="redirect">listComputer</result>
+		</action>
+		<action name="updateImprimante" class="org.gpi.controller.ProprieteController"
+			method="updateImprimante">
+			<result name="success" >listImprimante</result>
+		</action>
+		<action name="deleteMateriel" class="org.gpi.controller.ProprieteController"
+			method="deleteMateriel">
+			<result name="success" type="redirect" >listMateriel
+		    </result>
+		    </action>
+		<action name="confirmDeleteMateriel" class="org.gpi.controller.ProprieteController"
+			method="confirmDeleteMateriel">
+			<result name="success" type="redirect" >listArchive
+		    </result>
+		    </action>
+		
+		<action name="deleteComputer" class="org.gpi.controller.ProprieteController"
+			method="deleteMateriel">
+			<result name="success" type="redirect">listComputer
+		    </result>
+		</action>
+		<action name="deleteImprimante" class="org.gpi.controller.ProprieteController"
+			method="deleteImprimante">
+			<result name="success" type="redirect">listImprimante
+		    </result>
+		</action>
+		<action name="listMateriel" class="org.gpi.controller.ProprieteController"
+			method="listMateriel">
+			<result name="success">/pages/materiel/listMateriel.jsp
+			</result>
+		</action>
+		<action name="listArchive" class="org.gpi.controller.ProprieteController"
+			method="listArchive">
+			<result name="success">/pages/materiel/listArchive.jsp
+			</result>
+		</action>
+		<action name="listImprimante" class="org.gpi.controller.ProprieteController"
+			method="listImprimante">
+			<result name="success">/pages/imprimante/listImprimante.jsp
+			</result>
+		</action>
+		<action name="listComputer" class="org.gpi.controller.ProprieteController"
+			method="listComputer">
+			<result name="success">/pages/computer/listComputer.jsp
+			</result>
+		</action>
+		<!-- Crud User -->
+		
+
+	
+		<action name="initAddUser" class="org.gpi.controller.UserController"
+			method="initAddUser">
+			<result name="success" >/pages/user/addUser.jsp
+			</result>
+
+		</action>
+	
+		<action name="addUser" class="org.gpi.controller.UserController"
+			method="addUser">
+			<result name="success"  type="redirect">listUser
+			</result>
+
+		</action>
+	
+		<action name="initUpdateUser" class="org.gpi.controller.UserController"
+			method="initUpdateUser">
+			<result name="success">/pages/user/initUpdateUser.jsp
+			</result>
+			</action>
+		<action name="updateUser" class="org.gpi.controller.UserController"
+			method="updateUser">
+				<result name="success"  type="redirect">listUser
+			</result>
+			</action>
+		<action name="deleteUser" class="org.gpi.controller.UserController"
+			method="deleteUser">
+			<result name="success" type="redirect">listUser
+			</result>
+
+		</action>
+
+		<action name="listUser" class="org.gpi.controller.UserController"
+			method="listUser">
+			<result name="success">/pages/user/listUser.jsp
+			</result>
+
+		</action>
+		<action name="listGroup" class="org.gpi.controller.GroupeController"
+			method="listGroup">
+			<result name="success">/pages/groupe/listGroupe.jsp
+			</result>
+
+		</action>
+		
+		<action name="initAddEntreprise" class="org.gpi.controller.EntrepriseController"
+			method="initAddEntreprise">
+			<result name="success">/pages/entreprise/ajouterEntreprise.jsp
+			</result>
+
+		</action>
+ 
+		<action name="addGroupe" class="org.gpi.controller.GroupeController"
+			method="addGroupe">
+			<result name="success"  type="redirect">listGroup
+			
+			</result>
+
+		</action>
+			<action name="listNotification" class="org.gpi.controller.NotificationController"
+			method="listNotification">
+			<result name="success" type="redirect">index
+			</result>
+		</action>
+		
+		
+		
+	
+	
+			<action name="updateNotificationStatut" class="org.gpi.controller.NotificationController"
+			method="updateNotificationStatut">
+				<result name="success" type="redirect"> listNotification
+				
+			</result>
+		</action>
+		
+		<action name="searchMateriel" class="org.gpi.controller.ProprieteController"
+			method="searchMateriel">
+			<result name="success">/pages/imprimante/listImprimante.jsp</result>
+		</action>
+	
+	<action name="fileDownload" class="org.gpi.controller.ProprieteController"
+			method="download">
+			<result name="success" type="stream">
+				<param name="contentType">application/download</param>
+				<param name="inputName">fileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${fileName}"</param>
+				<param name="bufferSize">4096</param>
+				<param name=""></param>
+			</result>
+		</action>
+<!-- 		JSP To Action -->
+
+ 
+
+<!-- 	<action name="updateNotificationStatut" class="org.hmc.controller.PresaleController" -->
+<!-- 			method="updateNotificationStatut" > -->
+<!-- 			<result name="success" type="stream"> -->
+<!-- 				<param name="inputName">data</param> -->
+<!-- 			</result> -->
+<!-- 		</action> -->
+		
+ 
+
+	</package>
+
+</struts>

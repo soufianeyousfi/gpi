@@ -1,0 +1,71 @@
+@CHARSET "ISO-8859-1";
+.inputContent  {
+	display:table;
+	color: black;
+}
+
+.inputContent label{
+	float: left;
+}
+.inputContent .label {
+	width: 150px;
+	float: left;
+	margin: 10px 0 0;
+	color: black;
+}
+
+.inputContent span{
+	float: right;
+    margin-right: 5px;
+}
+
+.inputContent .input {
+	float: left;
+	margin: 10px 0 0;
+	width: 210px;
+}
+
+.inputText {
+	width: 290px;
+}
+
+.inputSelect {
+	width: 290px;
+}
+
+.inputButton {
+	background: none repeat scroll 0 0 #ececec;
+	border-radius: 10px;
+	height: 29px;
+	width: 100px;
+	margin: 20px 0 0 297px;
+}
+
+
+.fileContent{
+	width: auto;
+	float: none !important;
+	padding:1px;
+	display: inline;
+}
+
+a.deleteAction{
+	visibility: hidden;
+	text-decoration: none;
+}
+
+.fileContent:hover{
+	background: #eee;
+}
+.fileContent:hover  a.deleteAction{
+		visibility: visible !important;
+}
+
+.fileContent .delete{
+	width:10px;
+}
+
+.fileContent a.fileToDonwload{ 
+    background: transparent;
+    text-decoration: none;
+}
